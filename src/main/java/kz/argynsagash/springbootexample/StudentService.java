@@ -32,14 +32,14 @@ public class StudentService {
 
     public void deleteStudent(Long studentId) {
         boolean exists = studentRepository.existsById(studentId);
-        if (!exists) throw new IllegalStateException("Student with id " + studentId + " does not exist");
+        if (!exists) throw new IllegalStateException("Student with id " + studentId + " does not exists");
         studentRepository.deleteById(studentId);
     }
 
     @Transactional
     public void updateStudent(Long studentId, String name, String email) {
         Student student = studentRepository.findById(studentId).orElseThrow(() ->
-                new IllegalStateException("Student with id " + studentId + " does not exist"));
+                new IllegalStateException("Student with id " + studentId + " does not exists"));
         if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)) {
             student.setName(name);
         }
